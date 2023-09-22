@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Kalkulator Sederhana</title>
+    
+</head>
+<body>
+    <header>
+        <p>I Gusti Ngurah Rama Prayoga (2215101075)</p>
+        <p>Kelas: Ilkom B</p>
+    </header>
+    <h1>Aplikasi Menghitung Sederhana</h1>
+    <label for="inputVariable">Masukkan Variabel:</label>
+    <input type="number" id="inputVariable">
+    <label for="inputSisi">Masukkan Panjang Sisi:</label>
+    <input type="number" id="inputSisi">
+    <button onclick="hitungFibonacci()">Hitung Fibonacci</button>
+    <button onclick="hitungVolume()">Hitung Volume Kubus</button>
+    <div id="hasilPerhitungan"></div>
+    <div id="hasilPerhitungan"></div>
+    <script>function fibonacci(n) {
+            if (n <= 1) {
+                return n;
+            } else {
+                return fibonacci(n - 1) + fibonacci(n - 2);
+            }
+        }
+        
+        class Fibonacci {
+            constructor(n) {
+                this.n = n;
+            }
+        
+            output() {
+                let result = [];
+                let fn = 1;
+                let fn_1 = 1;
+                let fn_2 = 0;
+        
+                for (let i = 0; i < this.n; i++) {
+                    result.push(fn);
+                    fn = fn_1 + fn_2;
+                    fn_2 = fn_1;
+                    fn_1 = fn;
+                }
+        
+                return result;
+            }
+        }
+        
+        function hitungFibonacci() {
+            const inputNumber = document.getElementById("inputVariable").value;
+            const resultElement = document.getElementById("hasilPerhitungan");
+        
+            if (inputNumber === "") {
+                resultElement.innerText = "Silakan masukkan suku ke-n.";
+                return;
+            }
+        
+            const n = parseInt(inputNumber);
+        
+            if (isNaN(n)) {
+                resultElement.innerText = "Masukkan angka yang valid.";
+            } else {
+                const recursiveResult = fibonacci(n);
+                
+                const fibonacciInstance = new Fibonacci(n);
+                const iterativeResult = fibonacciInstance.output();
+        
+                resultElement.innerHTML = `
+                    Suku ke-${n} dari deret Fibonacci (Rekursi): ${recursiveResult}<br>
+                    Suku ke-${n} dari deret Fibonacci (Iteratif): ${iterativeResult.join(", ")}
+                `;
+            }
+        }
+        </script>
+        <script>function hitungVolume() {
+        const inputSisiElement = document.getElementById("inputSisi"); 
+        const hasilPerhitunganElement = document.getElementById("hasilPerhitungan");
+    
+        const sisi = parseFloat(inputSisiElement.value);
+    
+        if (isNaN(sisi) || sisi <= 0) {
+            hasilPerhitunganElement.innerText = "Masukkan panjang sisi yang valid (bilangan positif).";
+        } else {
+            const volume = sisi * sisi * sisi;
+            hasilPerhitunganElement.innerText = `Volume kubus dengan sisi ${sisi} adalah ${volume}`;
+        }
+        if (sisi < 0) {
+            alert("Tidak dapat melakukan perhitungan dengan angka negatif.");
+        }
+    }
+    </script>    
+</body>
+</html>
